@@ -20,7 +20,7 @@ ALTER TABLE dbo.Calendar ADD CONSTRAINT
 ALTER TABLE dbo.Calendar ADD CONSTRAINT
     DF_Calendar_feriadoNombre DEFAULT '' FOR feriadoNombre;
 
---DECLARACI”N VARIABLES DE FECHA DE INICIO Y FIN, EL PROGRAMA LLENAR¡ DATOS RESPECTO DE ESTAS FECHAS
+--DECLARACI√ìN VARIABLES DE FECHA DE INICIO Y FIN, EL PROGRAMA LLENAR√Å DATOS RESPECTO DE ESTAS FECHAS
 Declare @StartDate  DateTime
 Set @StartDate = '01/01/2010'
 Declare @EndDate    DateTime
@@ -42,26 +42,26 @@ Begin
     (
         YEAR (@StartDate) * 10000 + MONTH (@StartDate) * 100 + Day (@StartDate), --IDCal - FECHA CON FORMATO 'YYYYMMDD'
         @StartDate,                 -- fechaValor - FECHA COMO DATETIME
-        DATEPART (ww, @StartDate),  -- semanaAno - SEMANA DEL A—O
-        DATEPART (dw, @StartDate),  -- numDiaSemana - N⁄MERO DÕA DE SEMANA (E.G. MARTES = 2, VIERNES = 5)
-        DATENAME (dw, @StartDate),  -- nomDia - NOMBRE DEL DÕA
+        DATEPART (ww, @StartDate),  -- semanaAno - SEMANA DEL A√ëO
+        DATEPART (dw, @StartDate),  -- numDiaSemana - N√öMERO D√çA DE SEMANA (E.G. MARTES = 2, VIERNES = 5)
+        DATENAME (dw, @StartDate),  -- nomDia - NOMBRE DEL D√çA
         DATENAME (M, @StartDate),   -- nomMes - NOMBRE DEL MES
-        DATEPART (dy, @StartDate)   -- diaJuliano - DÕA JULIANO (1 - 365)
+        DATEPART (dy, @StartDate)   -- diaJuliano - D√çA JULIANO (1 - 365)
     )
 
     Set @StartDate = @StartDate + 1
 End
 
 --=========================== FDS
--- S¡BADO Y DOMINGO
+-- S√ÅBADO Y DOMINGO
 UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Fin de semana' WHERE numDiaSemana IN (6, 7)
 -- UPDATE dbo.Calendar SET feriadoBancario = 0, feriadoNombre = '' WHERE numDiaSemana IN (1) 
 -- SELECT * FROM CALENDAR WHERE feriadoBancario=1
 
 --=========================== FERIADOS BANCARIOS POR FECHA ASC
--- A—O NUEVO
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'AÒo nuevo' WHERE (IDCal % 2000) IN (0101)
---Select * from calendar WHERE feriadoNombre = 'AÒo nuevo'
+-- A√ëO NUEVO
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'A√±o nuevo' WHERE (IDCal % 2000) IN (0101)
+--Select * from calendar WHERE feriadoNombre = 'A√±o nuevo'
 
 -- VIERNES SANTO
 --UPDATE dbo.Calendar SET feriadoBancario = 0, feriadoNombre = '' WHERE (IDCal % 2000) IN (0419)
@@ -80,32 +80,32 @@ UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Viernes Santo' WHE
 UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Viernes Santo' WHERE IDCal = 20200410
 --SELECT * FROM CALENDAR WHERE feriadoNombre = 'Viernes Santo'
 
--- S¡BADO SANTO
+-- S√ÅBADO SANTO
 --UPDATE dbo.Calendar SET feriadoBancario = 0, feriadoNombre = '' WHERE (IDCal % 2000) IN (0420)
 --2010 EN ADELANTE
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S·bado Santo' WHERE IDCal = 20100402+1
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S·bado Santo' WHERE IDCal = 20110422+1
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S·bado Santo' WHERE IDCal = 20120406+1
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S·bado Santo' WHERE IDCal = 20130329+1
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S·bado Santo' WHERE IDCal = 20140418+1
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S·bado Santo' WHERE IDCal = 20150403+1
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S·bado Santo' WHERE IDCal = 20160325+1
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S·bado Santo' WHERE IDCal = 20170414+1
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S·bado Santo' WHERE IDCal = 20180330+1
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S·bado Santo' WHERE IDCal = 20190419+1
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S·bado Santo' WHERE IDCal = 20200410+1
---SELECT * FROM CALENDAR WHERE feriadoNombre = 'S·bado Santo'
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S√°bado Santo' WHERE IDCal = 20100402+1
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S√°bado Santo' WHERE IDCal = 20110422+1
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S√°bado Santo' WHERE IDCal = 20120406+1
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S√°bado Santo' WHERE IDCal = 20130329+1
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S√°bado Santo' WHERE IDCal = 20140418+1
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S√°bado Santo' WHERE IDCal = 20150403+1
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S√°bado Santo' WHERE IDCal = 20160325+1
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S√°bado Santo' WHERE IDCal = 20170414+1
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S√°bado Santo' WHERE IDCal = 20180330+1
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S√°bado Santo' WHERE IDCal = 20190419+1
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'S√°bado Santo' WHERE IDCal = 20200410+1
+--SELECT * FROM CALENDAR WHERE feriadoNombre = 'S√°bado Santo'
 
--- DÕA DEL TRABAJADOR
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'DÌa del Trabajador' WHERE (IDCal % 2000) IN (0501)
---SELECT * FROM CALENDAR WHERE feriadoNombre = 'DÌa del Trabajador'
+-- D√çA DEL TRABAJADOR
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'D√≠a del Trabajador' WHERE (IDCal % 2000) IN (0501)
+--SELECT * FROM CALENDAR WHERE feriadoNombre = 'D√≠a del Trabajador'
 
--- DÕA DE LAS GLORIAS NAVALES
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'DÌa de las Glorias Navales' WHERE (IDCal % 2000) IN (0521)
+-- D√çA DE LAS GLORIAS NAVALES
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'D√≠a de las Glorias Navales' WHERE (IDCal % 2000) IN (0521)
 
 -- SAN PEDRO Y SAN PABLO
 --UPDATE dbo.Calendar SET feriadoBancario = 0, feriadoNombre = '' WHERE (IDCal % 2000) IN (0629)
---2010++ M”VILES
+--2010++ M√ìVILES
 UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'San Pedro y San Pablo' WHERE IDCal = 20100628
 UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'San Pedro y San Pablo' WHERE IDCal = 20110627
 UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'San Pedro y San Pablo' WHERE IDCal = 20120702
@@ -119,19 +119,19 @@ UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'San Pedro y San Pa
 UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'San Pedro y San Pablo' WHERE IDCal = 20200629
 --SELECT * FROM CALENDAR WHERE feriadoNombre = 'San Pedro y San Pablo'
 
--- DÕA DE LA VIRGEN DEL CARMEN
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'DÌa de la Virgen del Carmen' WHERE (IDCal % 2000) IN (0716)
+-- D√çA DE LA VIRGEN DEL CARMEN
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'D√≠a de la Virgen del Carmen' WHERE (IDCal % 2000) IN (0716)
 
--- ASUNCI”N DE LA VIRGEN
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'AsunciÛn de la Viernes' WHERE (IDCal % 2000) IN (0815)
+-- ASUNCI√ìN DE LA VIRGEN
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Asunci√≥n de la Viernes' WHERE (IDCal % 2000) IN (0815)
 
 -- 18 DE SEPTIEMBRE
 UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Independencia Nacional' WHERE (IDCal % 2000) IN (0918)
 
 -- 19 DE SEPTIEMBRE
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'DÌa de las Glorias del EjÈrcito' WHERE (IDCal % 2000) IN (0919)
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'D√≠a de las Glorias del Ej√©rcito' WHERE (IDCal % 2000) IN (0919)
 
--- ENCUENTRO DE DOS MUNDOS / DÕA DE LA RAZA
+-- ENCUENTRO DE DOS MUNDOS / D√çA DE LA RAZA
 --UPDATE dbo.Calendar SET feriadoBancario = 0, feriadoNombre = '' WHERE (IDCal % 2000) IN (1012)
 UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Encuentro de Dos Mundos' WHERE IDCal = 20101011
 UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Encuentro de Dos Mundos' WHERE IDCal = 20111010
@@ -146,14 +146,14 @@ UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Encuentro de Dos M
 UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Encuentro de Dos Mundos' WHERE IDCal = 20201012
 --SELECT * FROM CALENDAR WHERE feriadoNombre = 'Encuentro de Dos Mundos'
 
--- DÕA DE LAS IGLESIAS EVANG…LICAS Y PROTESTANTES
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'DÌa de las Iglesias EvangÈlicas y Protestantes' WHERE (IDCal % 2000) IN (1031)
+-- D√çA DE LAS IGLESIAS EVANG√âLICAS Y PROTESTANTES
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'D√≠a de las Iglesias Evang√©licas y Protestantes' WHERE (IDCal % 2000) IN (1031)
 
--- DÕA DE TODOS LOS SANTOS
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'DÌa de Todos los Santos' WHERE (IDCal % 2000) IN (1101)
+-- D√çA DE TODOS LOS SANTOS
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'D√≠a de Todos los Santos' WHERE (IDCal % 2000) IN (1101)
 
--- INMACULADA CONCEPCI”N
-UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Inmaculada ConcepciÛn' WHERE (IDCal % 2000) IN (1208)
+-- INMACULADA CONCEPCI√ìN
+UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Inmaculada Concepci√≥n' WHERE (IDCal % 2000) IN (1208)
 
 -- NAVIDAD 24
 UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Noche Nueva' WHERE (IDCal % 2000) IN (1224)
@@ -166,9 +166,10 @@ UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Navidad' WHERE (ID
 UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Feriado Bancario' WHERE (IDCal % 2000) IN (1231)
 
 --SELECT * FROM CALENDAR
+
 --=========================== FERIADOS ESPECIALES
--- 17 / 20 DE SEPTIEMBRE CUANDO ('Independencia Nacional','DÌa de las Glorias del EjÈrcito') CAEN EN ENTRE MARTES Y JUEVES
--- OJO, NO TODOS LOS A—OS PUEDEN CONCEDER SANDWICH
+-- 17 / 20 DE SEPTIEMBRE CUANDO ('Independencia Nacional','D√≠a de las Glorias del Ej√©rcito') CAEN EN ENTRE MARTES Y JUEVES
+-- OJO, NO TODOS LOS A√ëOS PUEDEN CONCEDER SANDWICH
 --UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Sandwich Fiestas Patrias' WHERE IDCal = 20120917
 --UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Sandwich Fiestas Patrias' WHERE IDCal = 20180917
 --UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Sandwich Fiestas Patrias' WHERE IDCal = 20290917
@@ -179,8 +180,15 @@ UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Sandwich Fiestas P
 UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Sandwich Fiestas Patrias' WHERE (IDCal % 2000) IN (0920) AND numDiaSemana = 5
 --SELECT * FROM CALENDAR WHERE feriadoNombre='Sandwich Fiestas Patrias'
 --SELECT * FROM CALENDAR WHERE feriadoNombre='Independencia Nacional' AND numDiaSemana IN (2)
---SELECT * FROM CALENDAR WHERE feriadoNombre='DÌa de las Glorias del EjÈrcito' AND numDiaSemana IN (4)
+--SELECT * FROM CALENDAR WHERE feriadoNombre='D√≠a de las Glorias del Ej√©rcito' AND numDiaSemana IN (4)
 
 -- FERIADO ESPECIAL 24 DE DICIEMBRE - EL FERIADO PUEDE SER OTORGADO POR DISTINTAS ORGANIZACIONES
 UPDATE dbo.Calendar SET feriadoBancario = 1, feriadoNombre = 'Noche Buena (Especial)' WHERE (IDCal % 2000) IN (1224)
 SELECT * FROM CALENDAR WHERE feriadoBancario = 1 AND FERIADONOMBRE <> 'Fin de Semana'
+
+--===========================FERIADOS REGIONALES
+--OJO ESTOS FERIADOS NO SIEMPRE CORREN, VALIDAR CON CALENDARIOS HIST√ìRICOS
+--TOMA DEL MORRO DE ARICA, APLICABLE SOLO A ARICA
+UPDATE dbo.Calendar SET feriadoBancarioReg = 1, feriadoNombre = feriadoNombre + '- ARICA' WHERE (IDCal % 2000) IN (0607)
+--NATALICIO BERNARDO O'HIGGINS, APLICABLE SOLO A CHILLAN NUEVO Y VIEJO
+UPDATE dbo.Calendar SET feriadoBancarioReg = 1, feriadoNombre = feriadoNombre + '- CHILLAN' WHERE (IDCal % 2000) IN (0820)
